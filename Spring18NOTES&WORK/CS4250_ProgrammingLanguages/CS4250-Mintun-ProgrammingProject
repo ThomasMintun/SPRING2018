@@ -1,0 +1,105 @@
+#1 check whether number is even or odd
+LISP:
+(defun check-even-odd(n)
+if (oddp n)'(given number is odd)'(given number is even))
+write(check-even-odd 1))
+OUTPUT: (THE NUMBER IS ODD)
+
+PYTHON:
+num = int(4)
+if (num%2) == 0:
+	print("{0} is EVEN".format(num))
+else:
+	print("{0} is ODD".format(num))
+
+#2 check wheather number is prime or not
+LISP:
+(defun forloop(L P)
+(if (null L)
+T
+(and (FUNCALL P(cAR L))(forloop(CDR L)P))
+)
+)
+(defun numbers(start stop)
+(setf L nil)
+(loop ( when(> start stop) (return (reverse L)) )
+(setf L (cons start L) )
+(incf start)
+)
+)
+(defun prime(N)
+(forloop (numbers 2 (floor (sqrt N)))
+#'(lambda (d) (not (= (MOD N d) 0)))
+)
+)
+(write(prime 10))
+
+PYTHON:
+# Returns true if n is prime else false
+def prime(n):
+	return all([(n % j) for j in range(2, int(n**0.5)+1)]) and n>1
+
+# Driver code
+n = 41
+if prime(n):
+	print("Yes")
+else:
+	print("No")
+
+#3 add first n numbers using for loop
+LISP:
+(defun sum (n)
+(cond ((= n 0) 0)
+((= n 1) 1)
+(T (+ n (sum (- n 1))))))
+(write(sum 10))
+
+PYTHON:
+      n = int(input("Enter a number: "))
+if n < 0:
+    print("Enter a positive number")
+else:
+    sum = 0
+for i in range(0,n+1):
+    sum = sum + i
+print("The sum is",sum)
+
+#4 recursive program to calculate factorial of a number
+LISP:
+(defun factorial(n)
+(if (= n 1)
+1
+(* n (factorial (- n 1)))))
+(write (factorial 5))
+
+PYTHON:
+def factorial(n):
+    if n == 1:
+        return n
+    else:
+        return n*factorial(n-1)
+n = int(input("Enter a number: "))
+if n < 0:
+    print("Please input a positive number")
+elif n == 0:
+    print("The factorial of 0 is 1")
+else:
+    print("The factorial of",n,"is",factorial(n))
+
+#5 a program to implement a nested loop
+LISP:
+(defun nestedloop()
+(loop for a from 1 to 5 summing
+(loop for b from 1 to 5 summing 1
+))
+)
+(write(nestedloop))
+
+PYTHON:
+b=0
+for i in range(7,11):
+    a=0
+for j in range(7,11):
+    a=a+1
+    b=b+a
+print(b)
